@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages go below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\usepackage{fullpage}
+\usepackage{graphicx}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{asymptote}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\newcommand{\problem}[1]{\vspace{0.3in} \noindent {\bf Problem #1}}
+\newcommand{\solution}[1]{\vspace{0.3in} \noindent\bf Solution #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Assignment specific titles below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\title{\bf \large Harvard University \\ Math 25A \\ \vspace{0.2in} Problem Set 9}
+\author{ \bf \large Problem set by  Anupa Murali}
+\date{\today}                
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+
+
+\vspace{0.35in}
+
+\centerline{\bf \large Part 3}
+\problem{1} First, suppose $v = 0$. Then $T = 0$, so $\text{trace }T = 0 \langle w, v\rangle$.\\
+
+\noindent
+Next, suppose that $v \ne 0$. Then we can extend $v/||v||$ to an orthonormal basis of $V$, 
+$$
+\left( \frac{v}{||v||}, e_1, \ldots, e_n \right).
+$$ 
+The trace of $T$ is then,
+\begin{eqnarray*}
+\text{trace }T &=& \langle T(v/||v||), v/||v|| \rangle + \langle Te_1, e_1 \rangle + \cdots + \langle Te_n, e_n \rangle\\
+&=& \langle \langle v/||v|, v \rangle w, v/||v|| \rangle\\
+&=& \langle w, v \rangle.
+\end{eqnarray*}
+So in both cases, $\text{trace }T = \boxed{\langle w, v \rangle}$.\\
+
+\problem{2} The determinant of $T$ is equal to the determinant of $\mathcal{M}(T)$ for any basis, and $\text{det }\mathcal{M}(cT) = c^{\dim V}\mathcal{M}(T)$, so we have the following,
+\begin{eqnarray*}
+\text{det}(cT) &=& \text{det }\mathcal{M}(cT)\\
+&=& \text{det}(c\mathcal{M}(T))\\
+&=& c^{\dim V} \text{det }\mathcal{M}(T)\\
+&=& c^{\dim V}\text{det }T.
+\end{eqnarray*}
+\qed
+
+\problem{3} Since $T$ is orthogonal, it is invertible, it is also both injective and surjective. $g(v) = Tv + b$, so for $v_1, v_2 \in V$, if $Tv_1 = Tv_2$, we know that $v_1 = v_2$. Since $g(v_1) = Tv_1 + b$ and $g(v_2) = Tv_2 +b$, if $v_1 = v_2$, $g(v_1) = g(v_2)$, so $g$ must be injective. . Consider some arbitrary $v \in V$. Since $T$ is surjective,  $\exists w \in V$ such that $Tw = v - b$. Note that $g(w) = Tw + b = v$, so for any $v \in V$, $\exists w \in V$ such that $g(w) = v$. So $g$ is surjective. Since $g$ is both injective and surjective, it is bijective.\\
+
+\noindent
+From Theorem 7.36 in Axler, we have that the inverse of $T$ is $T^*$, so $T^*(Tv) = v$. We wish to find a $g'$ such that $g'(g(v)) = g'(Tv + b) = v$. Hence $g'(v) = \boxed{T^*(v - b)}$. \\
+
+\noindent
+$g(v) - g(w) = Tv - Tw = T(v -w)$. From Ireneo's Problem 4, we know that orthogonal transformations preserve norms, so $||T(v - w)|| = ||v-w||$. Hence $||g(v) - g(w)|| = ||v-w||$.\\
+
+\noindent
+Let us extend $\{v - w\}$ to a basis of $V$, $\{v-w, v_2, \ldots, v_n\}$ and from it, create an orthonormal basis $\{e_1, \ldots, e_n\}$ using the Gram-Schmidt process where $e_1 = \frac{v-w}{||v-w||}$.\\
+
+\noindent
+ Let us extend $\{v^* - w^*\}$ to a basis and apply the Gram-Schmidt process to obtain another orthonormal basis $\{e_1^*, \ldots, e_n^*\}$ where $e_1^* = \frac{v^* - w^*}{||v^* - w^*||}$.\\ 
+ 
+ \noindent
+ By definition, we then know that there exists an orthonormal transformation $T$ that maps  $\{e_1, \ldots, e_n\}$ to $\{e_1^*, \ldots, e_n^*\}$ where $Te_i = e_i^*$.\\
+ 
+ \noindent
+  We can write the following,
+  \begin{eqnarray}
+  T(v-w) &=& (||v-w||e_1) \nonumber \\
+  &=& ||v-w||Te_1 \nonumber \\
+  &=& ||v-w||e_1^* \text{ (since } ||v-w|| = ||v^*-w^*||) \nonumber \\
+  &=& v^* - w^* \nonumber \\
+  \Longrightarrow Tv - v^* = Tw - w^*.
+  \end{eqnarray}
+  Let (1) be $-b$ (in other words, $Tv - v^* = Tw - w^* = -b$). Now note the following from manipulating equation (1),
+  \begin{eqnarray*}
+  Tv + (w^* - Tw) &=& v^*\\
+  Tw + (v^* - Tv) &=& w^*.
+  \end{eqnarray*}
+  But we know that $w^* - Tw = v^* - Tv = b$, so we have,
+  \begin{eqnarray*}
+  Tv + b &=& v^*\\
+  Tw + b &=& w^*,
+  \end{eqnarray*}
+  so there exists $g$ with transformation $T$ and and vector $b \in V$ such that $g(v) = Tv + b$ and preserves distance. 
+\end{document}

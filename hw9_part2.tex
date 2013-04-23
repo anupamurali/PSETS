@@ -1,0 +1,133 @@
+\documentclass[12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages go below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\usepackage{fullpage}
+\usepackage{graphicx}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{asymptote}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\newcommand{\problem}[1]{\vspace{0.3in} \noindent {\bf Problem #1}}
+\newcommand{\solution}[1]{\vspace{0.3in} \noindent\bf Solution #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Assignment specific titles below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\title{\bf \large Harvard University \\ Math 25A \\ \vspace{0.2in} Problem Set 9}
+\author{ \bf \large Problem set by  Anupa Murali}
+\date{\today}                
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+
+
+\vspace{0.35in}
+
+\centerline{\bf \large Part 2}
+\problem{1} From the spectral theorem, we know that if $T$ is self adjoint, then there exists an orthonormal basis of $V$ consisting of eigenvectors of $T$. So $v$ can be written as follows,
+$$
+v = \langle v, e_1 \rangle e_1 + \cdots + \label v, e_n \rangle e_n.
+$$
+Applying $T$ to the above,
+$$
+Tv = \lambda_1\langle v, e_1 \rangle e_1 + \cdots + \lambda_n\langle v, e_n \rangle e_n.
+$$
+We are given that $||Tv - \lambda v || < \epsilon$, so we have,
+\begin{eqnarray*}
+||Tv - \lambda v ||^2 &=& ||(\lambda_1 - \lambda)\langle v, e_1 \rangle e_1 + \cdots + (\lambda_n- \lambda)\langle v, e_n \rangle e_n||^2\\
+&=& |\lambda_1 - \lambda|^2|\langle v, e_1 \rangle|^2 + \cdots + |\lambda_n- \lambda|^2|\langle v, e_n \rangle|^2\\
+&\ge& (\text{min} \{|\lambda_1 - \lambda|^2, \ldots, |\lambda_n - \lambda|^2\}(|\langle v, e_1 \rangle|^2 + \cdots + |\langle v, e_n \rangle|^2)\\
+&=& \text{min}\{|\lambda_1 - \lambda|^2, \ldots, |\lambda_n - \lambda|^2\},
+\end{eqnarray*}
+so $||Tv - \lambda v ||^2 \ge \text{min}\{|\lambda_1 - \lambda|^2, \ldots, |\lambda_n - \lambda|^2\}$. But $\epsilon > ||Tv - \lambda v ||^2$, so for some eigenvalue $\lambda'$ of $T$, $|\lambda - \lambda'| < \epsilon$.
+
+\problem{2} Suppose $\{v_1, \ldots, v_n\}$ is a basis of $V$ such that $\{v_1, \ldots, v_n\}$ are eigenvectors of $T$ and $\{\lambda_1, \ldots, \lambda_n\}$ are the eigenvalues of $T$. Then $\mathcal{M}(T^2)$ with respect to $ \{v_1, \ldots, v_n\}$ is the following,
+$$
+\left(
+ \begin{array}{ccccc}
+   \lambda_1^2 & && &0 \\
+    &\cdot & & &\\
+    & & \cdot& &\\
+    & & & \cdot&\\
+    0& & & &\lambda_n^2 \\
+ \end{array}
+\right),\\
+$$
+so $\text{trace}(T^2) = \lambda_1^2 + \cdots + \lambda_n^2 \ge 0$.\\
+\qed
+
+\problem{3} If $\langle S, T \rangle = \text{trace}(ST^*)$ defines an inner product on $\mathcal{L}(V)$, then we must show that it satisfies positivity, definiteness, additivity in the first slot, homogeneity in the first slot, and conjugate symmetry.\\
+
+\noindent
+Let $S = T^*$. We know that $\langle T, T \rangle = \text{trace}(TT^*) = \text{trace}(S^*S)$. Let $(v_1, \ldots, v_n)$ be an orthonormal basis of $V$. Then we have the following,
+\begin{eqnarray*}
+\text{trace}(S^*S) &=& \langle S^*Sv_1, v_1 \rangle + \cdots + \langle S^*Sv_n, v_n \rangle\\
+&=& \langle Sv_1, Sv_1 \rangle + \cdots + \langle Sv_n, Sv_n \rangle\\
+&=& ||Sv_1||^2 + \cdots + ||Sv_n||^2\\
+\ge 0,
+\end{eqnarray*}
+so $\langle T, T \rangle \ge 0$. \\
+
+\noindent
+Now, suppose $T \in V$ such that $\langle T, T \rangle = \text{trace}(TT^*) =0$. for any $v \in V$, however, note that,
+\begin{eqnarray*}
+\langle T^*Tv, v \rangle &=& \langle Tv, Tv \rangle\\
+&\ge& 0,
+\end{eqnarray*}
+so $T^*T$ is positive for every $v \in V$. This means that $\text{trace }T^*T \ge 0$. But $\text{trace}(TT^*) =0$, so it must be that $T = T^* = 0$. \\
+
+\noindent
+If $T = T^* = 0$, we know that $TT^*$ is a 0 matrix, so trace $(TT^*) = 0$. \\
+
+\noindent
+ Now, let $S_1, S_2, T \in \mathcal{L}(V)$. We have the following,
+ \begin{eqnarray*}
+ \langle S_1, T \rangle &=& \text{trace}(S_1T^*)\\
+ \langle S_2, T \rangle &=& \text{trace}(S_2T^*)\\
+ \Longrightarrow \langle S_1, T \rangle + \langle S_2, T \rangle &=& \text{trace}(S_1T^*) +  \text{trace}(S_2T^*)\\
+ &=& \text{trace}(S_1T^* + S_2T^*)\\
+ &=& \text{trace}((S_1 + S_2)T^*)\\
+ &=& \langle S_1 + S_2, T \rangle.
+ \end{eqnarray*} 
+
+ 
+ \noindent
+ Now let $c \in \mathbb{F}$, so we have,
+ \begin{eqnarray}
+ \langle cS_1, T \rangle &=& \text{trace}(cS_1T^*) \nonumber \\
+ &=& c \text{trace}(S_1T^*)  \\
+ &=& c \langle S_1, T \rangle. \nonumber
+ \end{eqnarray}
+We know that (1) holds true since trace$(T)$ is the sum of the entries in the diagonal of $\mathcal{M}(T)$. $\mathcal{M}(cT)$ contains the entries in $\mathcal{M}(T)$ each multiplied by $c$, so $\text{trace}(cT) = c\text{trace }T$, so $\text{trace}(cS_1T^*) = c \text{trace}(S_1T^*) $.\\
+
+
+\noindent
+Let $(v_1, \ldots, v_n)$ be an orthonormal basis for $V$ and $S \in \mathcal{L}(V)$. Then we have the following,
+\begin{eqnarray*}
+\text{trace }(ST^*) &=& \langle ST^*v_1, v_1 \rangle + \cdots + \langle ST^*v_n, v_n \rangle\\
+&=& \langle v_1, ST^*v_1 \rangle + \cdots + \langle v_n, ST^*v_n \rangle\\
+&=& \overline{\langle (ST^*)^*v_1, v_1 \rangle} + \cdots +\overline{\langle (ST^*)^*v_n, v_n \rangle}\\
+&=& \overline{\text{trace}((ST^*)^*)},
+\end{eqnarray*}
+So,
+\begin{eqnarray*}
+\langle S, T \rangle &=& \text{trace}(ST^*)\\
+&=& \overline{\text{trace}((ST^*)^*)}\\
+&=& \overline{\text{trace}(TS^*)}\\
+&=& \overline{\langle S, T \rangle}.
+\end{eqnarray*}
+So $\langle S, T \rangle = \text{trace}(ST^*)$ satisfies definiteness, additivity in the first slot, homogeneity in the first slot, and conjugate symmetry, so it defines an inner product.\\
+\qed
+\end{document}

@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages go below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\usepackage{fullpage}
+\usepackage{graphicx}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{asymptote}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\newcommand{\problem}[1]{\vspace{0.3in} \noindent {\bf Problem #1}}
+\newcommand{\solution}[1]{\vspace{0.3in} \noindent\bf Solution #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Assignment specific titles below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\title{\bf \large Harvard University \\ Math 25A \\ \vspace{0.2in} Problem Set 9}
+\author{ \bf \large Problem set by  Anupa Murali}
+\date{\today}                
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+
+
+\vspace{0.35in}
+
+\centerline{\bf \large Part 4}
+\problem{1} The sum of the diagonals of the matrix is the sum of the eigenvalues of $T$. Hence the sum of the eigenvalues of $T$ is $51 - 40 + 1 = 12$, so the last eigenvalue must be $12 - (-48 + 24) = \boxed{36}$.\\
+
+\problem{2} First, suppose that there is an inner product on $U$ that makes $T$ into a self-adjoint operator. Then by the spectral theorem, $U$ has an orthonormal basis consisting of eigenvectors of $T$.\\
+
+\noindent
+Now  Suppose $U$ has a basis $(v_1, \ldots, v_n)$ of eigenvectors of $T$, so every element of $U$ can be written as unique linear combination of $(v_1, \ldots, v_n)$. If $u, v \in U$ such that $u = a_1v_1 + \cdots + a_nv_n$ and $v = b_1v_1 + \cdots + b_nv_n$, then we define $\langle u, v \rangle$ as follows,
+$$
+\langle u, v \rangle = a_1b_1 + \cdots + a_nb_n.
+$$
+We first show that such a definition is indeed an inner product. First, we have,
+$$
+\langle u, u \rangle = a_1^1 + \cdots + a_n^2 \ge 0,
+$$
+so the definition satisfies positivity.\\
+
+\noindent
+Next suppose $\langle u, u \rangle = 0$. Then we have, 
+$$
+\langle u, u \rangle =  a_1^2 + \cdots + a_n^2 = 0,
+$$
+so $a_1 = a_2 = \cdots = a_n = 0$, so $u = 0$.\\
+
+\noindent
+If $u, v, w \in U$, then we have, where $u = a_1v_1 + \cdots + a_nv_n$, $v = b_1v_1 + \cdots + b_nv_n$, and $w = c_1v_1 + \cdots + c_nv_n$,\\
+\begin{eqnarray*}
+\langle u, v \rangle &=& a_1b_1 + \cdots + a_nb_n\\
+\langle u, w \rangle &=& a_1c_1 + \cdots + a_nc_n.
+\end{eqnarray*}
+Since $v + w = (b_1 + c_1)v_1 + \cdots + (b_n + c_n)v_n$, we have,
+\begin{eqnarray*}
+\langle u, v \rangle + \langle u, w \rangle = &=& a_1(b_1 + c_1) + \cdots + a_n(b_n + c_n)\\ 
+&=& \langle u, v + w \rangle,
+\end{eqnarray*} 
+so the definition also satisfies additivity in the first slot.\\
+
+\noindent
+Let $c \in \mathbb{F}$. Then we have the following,
+\begin{eqnarray*}
+\langle cu, v \rangle &=& ca_1b_1 + \cdots + ca_nb_n\\
+&=& c \langle u, v \rangle, 
+\end{eqnarray*}
+so the definition satisfies homogeneity in the first slot.\\
+
+\noindent
+We have that,
+\begin{eqnarray*}
+\langle u, v \rangle &=& a_1b_1 + \cdots + a_nb_n\\
+\text{and } \langle v, u &=& b_1a_1 + \cdots + b_na_n,
+\end{eqnarray*}
+so $\langle u, v \rangle = \langle v, u \rangle$, so the definition exhibits symmetry.\\
+
+\noindent
+Since $(v_1, \ldots, v_n)$ are eigenvectors of $T$, $\mathcal{M}(T)$ with respect to $(v_1, \ldots, v_n)$ is a diagonal matrix, so $T$ is self adjoint.\\
+
+\noindent
+So $U$ has a basis consisting of eigenvectors of $T$ is and only if there is an inner product on $U$ that makes $T$ into a self-adjoint operator.\\
+\qed
+
+\problem{3} Suppose $T$ is orthogonal. We have the following for $v \in V$,
+\begin{eqnarray*}
+||v||^2 &=& \langle v, v \rangle\\
+||Tv||^2 &=& \langle Tv, Tv \rangle.
+\end{eqnarray*}
+Since $T$ is orthogonal, $\langle v, v \rangle = \langle Tv, Tv \rangle$, so $||v||^2 = ||Tv||^2$ or $||v|| = ||Tv||$, so if $T$ is orthogonal, it preserves norms.\\
+
+\noindent
+Now suppose that $T$ preserves norms. So for $u, v \in V$, $||u|| = ||Tu||$ and $||v|| = ||Tv||$. Now note that,
+\begin{eqnarray*}
+||u + v||^2 &=& ||u||^2 + ||v||^2 + 2 \langle u, v \rangle.
+\end{eqnarray*}
+Also,
+\begin{eqnarray*}
+||T(u + v)||^2 &=& ||Tu + Tv||\\
+&=& ||Tu||^2 + ||Tv||^2 + 2 \langle Tu, Tv \rangle.\\
+\end{eqnarray*}
+Since $T$ preserves, norms, the above equation is in fact,
+$$
+||u + v||^2 = ||u||^2 + ||v||^2 + 2\langle Tu, Tv \rangle.
+$$
+But $||u + v||^2 = ||u||^2 + ||v||^2 + 2 \langle u, v \rangle$, so it must be that $\langle u, v \rangle = \langle Tu, Tv \rangle$, so by definition, $T$ is orthogonal.\\
+
+\noindent
+Hence $T$ preserves norms if and only if $T$ is orthogonal.\\
+\qed 
+\end{document}

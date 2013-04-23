@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages go below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\usepackage{fullpage}
+\usepackage{graphicx}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{asymptote}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\newcommand{\problem}[1]{\vspace{0.3in} \noindent {\bf Problem #1}}
+\newcommand{\solution}[1]{\vspace{0.3in} \noindent\bf Solution #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Assignment specific titles below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\title{\bf \large Harvard University \\ Math 25B \\ \vspace{0.2in} Problem Set 9}
+\author{ \bf \large Problem set by  Anupa Murali}
+\date{\today}                
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+
+
+\vspace{0.35in}
+\centerline{\bf \large Part 1}
+
+\problem{1} Note that $\varphi$ is surjective, since $\varphi$ takes $[a,b] \rightarrow [c,d]$. Further, it is injective, since $\varphi$ is strictly increasing. Hence $\varphi$ is bijective, so it is invertible. So if $\alpha = \beta \circ \varphi$, then $\varphi^{-1} \circ \alpha = \beta$. For $\varphi$ to be symmetric, then we must have that $\varphi^{-1}>0$. Note that,
+\begin{eqnarray*}
+\varphi \circ \varphi^{-1} &=& I\\
+\Longrightarrow \varphi ' (\varphi^{-1}) \cdot {\varphi'^{-1}} &=& 1\\
+\Longrightarrow \varphi ' (\varphi^{-1}) &=& \frac{1}{\varphi'^{-1}},
+\end{eqnarray*}
+but since $\varphi'(\varphi^{-1})>0$, $\varphi'^{-1}>0$. Hence if $\alpha$ is equivalent to $\beta$, $\beta$ is equivalent to $\alpha$.\\
+\qed
+
+
+\noindent
+Now, suppose that $\alpha = \beta \circ \varphi$ and $\beta = \gamma \circ f$. So we have the following,\\
+\begin{eqnarray*}
+\alpha &=& \gamma \circ f(\varphi).
+\end{eqnarray*}
+Hence we must show that $f'(\varphi)\varphi' > 0$. Note that $\varphi' > 0$, since $\alpha$ is equivalent to $\beta$. Further, $f'>0$, since $\beta$ is equivalent to $\gamma$. From this, we know that $f'(\varphi)\varphi'>0$.\\
+\qed
+
+
+\problem{2} If $\alpha'(t) \ne 0,~ \forall t$, then we have the following,
+\begin{eqnarray*}
+\beta'(t) &=& \alpha'(\varphi(t)) \varphi'(t) \ne 0.
+\end{eqnarray*}
+Since $\varphi'(t)>0$, it must be that $\beta'(t) \ne 0$ as well. Hence if $\alpha$ is smooth, $\beta$ is also smooth.\\
+\qed
+
+\end{document}
