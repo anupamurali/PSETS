@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages go below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\usepackage{fullpage}
+\usepackage{graphicx}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{asymptote}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\newcommand{\problem}[1]{\vspace{0.3in} \noindent {\bf Problem #1}}
+\newcommand{\solution}[1]{\vspace{0.3in} \noindent\bf Solution #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Assignment specific titles below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\title{\bf \large Harvard University \\ Math 25B \\ \vspace{0.2in} Problem Set 9}
+\author{ \bf \large Problem set by  Anupa Murali}
+\date{\today}                
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+
+
+\vspace{0.35in}
+
+\centerline{\bf \large Part 1}
+
+\problem{1} 
+We use the parametrization, $(a\cos t, b\sin t)$ in order to find the circumference of the ellipse as follows,
+\begin{eqnarray*}
+s(\gamma) &=& \int_0^{2\pi} |\gamma'(t)| dt\\
+&=& \int_0^{2\pi}|(a\sin t, b\cos t)|dt\\
+&=& \int_0^{2\pi}(a^2\sin^2t + b^2 \cos^2t)^{1/2}dt.
+\end{eqnarray*}
+Now, note that the elliptic integral is as follows,
+\begin{eqnarray*}
+4aE\left( \frac{1}{a}(a^2-b^2)^{1/2},\pi/2 \right) &=& 4a \int_0^{\pi/2} \left(1-\frac{a^2-b^2}{a^2} \sin^2t \right)^{1/2}\\
+&=& 4a \int_0^{\pi/2} \left(\frac{a^2\cos^2 t + b^2 \sin^2 t}{a^2}\right)^{1/2}dt\\
+&=& 4\int_0^{\pi/2} (a^2\cos^2t + b^2\sin^2t)^{1/2}dt. \text{ Substituting } t = \pi/2 - u,\\
+&=& 4\int_{\pi/2}^0 (a^2\sin^2p + b^2 \cos^2p)^{1/2}dp\\
+&=& \int_{2\pi}^0 (a^2\sin^2p + b^2 \cos^2p)^{1/2}dp\\
+&=&  \int_0^{2\pi}(a^2\sin^2t + b^2 \cos^2t)^{1/2}dt,
+\end{eqnarray*}
+so the circumference of the ellipse is equal to the elliptic integral given.\\
+\qed
+
+\problem{2}
+\begin{itemize}
+\item[(a)] Applying chain rule on $\gamma = T(c(t))$,
+\begin{eqnarray*}
+\gamma'(t) &=& c_1'(t)D_1(T(c_1(t))+ c_2'(t)D_2T(c(t)).
+\end{eqnarray*}
+The matrix for the above is as follows,\\
+\begin{eqnarray*}
+A = \left(\frac{\partial u}{\partial t}\cdot \frac{\partial{T_1}}{\partial u} + \frac{\partial{v}}{\partial t}\frac{\partial T_1}{\partial v}, \frac{\partial u}{\partial t}\cdot \frac{\partial{T_2}}{\partial u} + \frac{\partial{v}}{\partial t}\frac{\partial T_2}{\partial v},\frac{\partial u}{\partial t}\cdot \frac{\partial{T_3}}{\partial u} + \frac{\partial{v}}{\partial t}\frac{\partial T_3}{\partial v}\right)
+\end{eqnarray*}
+$s(\gamma) = |\gamma'(t)|^2$, so we compute this as follows,
+\begin{eqnarray*}
+A\cdot A^{T}&=& \left[\frac{\partial T_i}{\partial u} \cdot  \frac{\partial T_i}{\partial u}\cdot \left(\frac{\partial u}{\partial t} \right)^2 + 2 \left(\frac{\partial T_i}{\partial u} \frac{\partial T_i}{\partial v}\right) \frac{\partial u}{\partial t} \frac{\partial v}{\partial t} + \frac{\partial T_i}{\partial u} \cdot  \frac{\partial T_i}{\partial v} \cdot \left(\frac{\partial v}{\partial t}\right)^2\right]\\
+&=& E \cdot \left(\frac{\partial u}{\partial t} \right)^2  + 2F\frac{\partial u}{\partial t} \frac{\partial v}{\partial t} + G\left(\frac{\partial v}{\partial t}\right)^2.
+\end{eqnarray*}
+\qed
+\item[(b)]
+\end{itemize}
+\problem{3} Since $F(\gamma(t)) = m\gamma''(t)$, we can calculate the work done in the force field as follows by using the substitution, $v = \gamma'(t)$,
+\begin{eqnarray*}
+W &=& \int_a^b F(\gamma(t))\gamma'(t)dt\\
+&=& \int_a^b m\gamma''(t) \cdot \gamma'(t)dt\\
+&=& \int_{\gamma'(a)}^{\gamma'(b)}mvdv\\
+&=& \frac{1}{2}mv^2\Big |_{\gamma'(a)}^{\gamma'(b)}\\
+&=& \frac{1}{2}m(\gamma'(b))^2-\frac{1}{2}m(\gamma'(a))^2\\
+&=& \frac{1}{2}v(b)^2 - \frac{1}{2}v(a)^2,
+\end{eqnarray*}
+since $(\gamma'(t))^2 = |\gamma'(t)|^2 = |v(t)|^2$.\\
+
+\qed
+\end{document}

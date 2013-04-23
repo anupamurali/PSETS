@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages go below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\usepackage{fullpage}
+\usepackage{graphicx}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{asymptote}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\newcommand{\problem}[1]{\vspace{0.3in} \noindent {\bf Problem #1}}
+\newcommand{\solution}[1]{\vspace{0.3in} \noindent\bf Solution #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Assignment specific titles below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\title{\bf \large Harvard University \\ Math 25B \\ \vspace{0.2in} Problem Set 9}
+\author{ \bf \large Problem set by  Anupa Murali}
+\date{\today}                
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+
+
+\vspace{0.35in}
+
+\centerline{\bf \large Part 3}
+
+\problem{1} 
+\begin{itemize}
+\item[(a)] Note that $\int_\gamma d\theta = \arctan{(y/x)}$. We are evaluating $\int_\gamma d\theta$ along the ellipse. Note that $\arctan{(y/x)}$ ranges from 0 to $2\pi$ on the ellipse. Hence it is likely that $\int_\gamma d\theta = 2\pi$. Also, note the following,
+
+\begin{eqnarray*}
+ \int_\gamma \frac{-ydx + x dy}{x^2 + y^2} &=& \int_0^{2\pi} \frac{ab\sin^2t + ab\cos^2t}{a^2\cos^2t + b^2 \sin^2t}dt \\
+ &=& \int_0^{2\pi}  \frac{ab}{a^2\cos^2t + b^2 \sin^2t}dt\\
+\Longrightarrow  \int_0^{2\pi}  \frac{1}{a^2\cos^2t + b^2 \sin^2t}dt &=& \frac{2\pi}{ab}.
+\end{eqnarray*}
+\qed
+
+\item[(b)] We first compute $E,F,G$ as follows,
+\begin{eqnarray*}
+E &=& \frac{\partial T}{\partial u} \cdot \frac{\partial T}{\partial u}\\
+ &=& (\cos\varphi\cos\theta,\cos\varphi\sin\theta,-\sin\varphi) \cdot (\cos\varphi\cos\theta,\cos\varphi\sin\theta,-\sin\varphi) \\
+&=& \cos^2\varphi \cos^2\theta + \cos^2\varphi\sin^2\theta + \sin^2\varphi\\
+&=& 1\\
+\end{eqnarray*}
+\begin{eqnarray*}
+F&=& \frac{\partial T}{\partial u}\cdot \frac{\partial T}{\partial v}\\
+&=& (\cos\varphi\cos\theta,\cos\varphi\sin\theta,-\sin\varphi) \cdot (-\sin \varphi \sin \theta,\sin\varphi \cos \theta,0)\\
+&=& -\cos\varphi\sin\varphi\cos\theta\sin\theta + \cos\varphi\sin\varphi\cos\theta\sin\theta + 0\\
+&=& 0\\
+\end{eqnarray*}
+\begin{eqnarray*}
+G&=& \frac{\partial T}{\partial v}\cdot \frac{\partial T}{\partial v}\\
+&=& (-\sin \varphi \sin \theta,\sin\varphi \cos \theta,0) \cdot (-\sin \varphi \sin \theta,\sin\varphi \cos \theta,0)\\
+&=& \sin^2\varphi \sin^2\theta + \sin^2\varphi \cos^2\theta\\
+&=& \sin^2\varphi.\\
+\end{eqnarray*}
+Hence plugging into the formula derived from part (a), we have,
+\begin{eqnarray*}
+s(\gamma) &=& \int_a^b \left[\left(\frac{d\varphi}{dt}\right)^2 + \sin^2\varphi\left(\frac{d\theta}{dt}\right)^2\right]^{1/2}dt.
+\end{eqnarray*}
+\qed
+\end{itemize}
+\problem{2} 
+Define $F$ such that $\nabla F=(f,g)$. So we have the following,
+\begin{eqnarray*}
+\int_\gamma \omega &=& \int_\gamma f(x)dx + g(y)dy\\ 
+&=& \int_{t_1}^{t_2} f(\gamma(t))\gamma_1'(t) + g(\gamma(t))\gamma_2'(t)dt\\
+&=& \int_{t_1}^{t_2} \nabla F (\gamma(t)) \cdot \gamma'(t) dt\\
+&=& F(\gamma(t_2)) - F(\gamma(t_1)).
+\end{eqnarray*}
+However, since $\gamma$ is closed, $\gamma(t_1) = \gamma(t_2)$, so $\int_\gamma \omega = 0$.\\
+\qed
+
+
+\problem{3} We compute it as follows,
+\begin{eqnarray*}
+\int_\gamma \omega &=& \int_0^{2\pi}\frac{(\cos t - \sin t)(-\sin t) + (\cos t + \sin t) \cos t}{\cos^2t + \sin^2t}dt\\
+&=& \int_0^{2\pi}dt\\
+&=& \boxed{2\pi}.
+\end{eqnarray*}
+\end{document}

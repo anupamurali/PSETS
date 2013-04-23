@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages go below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\usepackage{fullpage}
+\usepackage{graphicx}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{asymptote}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\newcommand{\problem}[1]{\vspace{0.3in} \noindent {\bf Problem #1}}
+\newcommand{\solution}[1]{\vspace{0.3in} \noindent\bf Solution #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Assignment specific titles below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\title{\bf \large Harvard University \\ Math 25B \\ \vspace{0.2in} Problem Set 9}
+\author{ \bf \large Problem set by  Anupa Murali}
+\date{\today}                
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+
+
+\vspace{0.35in}
+
+\centerline{\bf \large Part 4}
+\problem{1} The function could be $f(x,y,z) = xy + z^2$. Using Theorem 1.5, we have the following,
+\begin{eqnarray*}
+\int_\gamma \omega &=& \int_a^b df_\gamma(\gamma'(t))dt\\
+&=& f(\gamma(b)) - f(\gamma(a))\\
+&=& f(0,1,-1) - f(1,0,1)\\
+&=& \boxed{0}.
+\end{eqnarray*}
+
+
+\problem{2} 
+\begin{itemize}
+\item[(a)] Using Green's Theorem, we have,
+\begin{eqnarray*}
+ \int_C (3x^2-y)dx + (x+4y^3)dy &=&\int_D\int 2 dxdy\\
+ &=& \int_0^1\int_0^{\sqrt{1-y^2}}2dxdy\\
+ &=& \int_0^12\sqrt{1-y^2}dy\\
+ &=& (x\sqrt{1-x^2} + \arcsin x)\Big |_0^1\\
+ &=& \boxed{\pi/2}.
+ \end{eqnarray*}
+ \item[(b)] Again using Green's Theorem, we have,
+ \begin{eqnarray*}
+ \int_0^1 2xdx &=& x^2 \Big |_0^1\\
+ &=& \boxed{1}.
+ \end{eqnarray*}
+\end{itemize}
+
+\problem{3} Using the parametrization $(x,y) = (a\cos x,  b\sin x)$, we have,
+\begin{eqnarray*}
+\frac{1}{2} \int -ydx + x dy &=& \frac{1}{2} \int_0^{2\pi} ab\sin^2x + ab\cos^2x dx\\
+&=& \frac{1}{2}\int_0^{2\pi}ab dx\\
+&=& \frac{1}{2} ab \Big |_0^{2\pi}\\
+&=& \boxed{ \pi ab}.
+\end{eqnarray*}
+
+
+\end{document}
